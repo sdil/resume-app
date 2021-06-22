@@ -17,7 +17,8 @@ class ExperienceCreateView(CreateView):
 
 class ExperienceUpdateView(UpdateView):
     model = Experience
-    fields = ["title"]
+    form_class = ExperienceForm
+    success_url = reverse_lazy("experience-list")
 
 
 class ExperienceDeleteView(DeleteView):

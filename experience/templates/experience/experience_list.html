@@ -1,4 +1,5 @@
 {% for experience in object_list %}
     {{ experience.title }} {{ experience.company }}, {{ experience.start_year }} - {{ experience.end_year }} <br>
-    
 {% endfor %}
+
+<a href="{% url 'experience-add' %}">Add new experience</a>
