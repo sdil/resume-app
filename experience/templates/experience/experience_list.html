@@ -1,5 +1,17 @@
-{% for experience in object_list %}
-    {{ experience.title }} {{ experience.company }}, {{ experience.start_year }} - {{ experience.end_year }} <br>
-{% endfor %}
+{% extends 'base.html' %}
+
+{% block content %}
+<ul>
+    {% for experience in object_list %}
+    <li>
+        <b>{{ experience.title }} </b> {{ experience.company }}, {{ experience.start_date | date:"M Y" }} - {{ experience.end_date |date:"M Y" }}
+        <a href="{% url 'experience-update' experience.id %}">Update Experience</a>
+        <a href="{% url 'experience-delete' experience.id %}">Delete experience</a>
+        <br>
+        {{ experience.description }}
+    </li>
+    {% endfor %}
+</ul>
 
 <a href="{% url 'experience-add' %}">Add new experience</a>
+{% endblock %}
