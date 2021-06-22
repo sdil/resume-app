@@ -17,17 +17,26 @@ def dashboard(request):
     return render(request, "experience/dashboard.html", {"experiences": experiences},)
 
 
+def details(request, pk):
+    experience = get_object_or_404(Experience, id=pk)
+    return render(
+        request, "experience/experience_details.html", {"experience": experience},
+    )
+
+
 def create(request):
     if request.method == "GET":
         form = ExperienceForm()
         return render(request, "experience/experience_form.html", {"form": form,},)
-    else:
+    elif request.method == "POST":
         form = ExperienceForm(request.POST)
         if form.is_valid():
             form.save()
         else:
             messages.error(request, "The form is invalid")
-        return redirect("dashboard")
+            return render(request, "experience/experience_form.html", {"form": form,},)
+
+    return redirect("dashboard")
 
 
 def update(request, pk):
@@ -40,6 +49,9 @@ def update(request, pk):
         form = ExperienceForm(request.POST, instance=experience)
         if form.is_valid():
             form.save()
+        else:
+            messages.error(request, "The form is invalid")
+            return render(request, "experience/experience_form.html", {"form": form,},)
 
     return redirect("dashboard")
 

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p>
+    Title: {{ experience.title }} <br>
+    Company: {{ experience.company }} <br>
+    Start Date: {{ experience.start_date | date:"M Y" }} <br>
+    End Date: {{ experience.end_date |date:"M Y" }} <br>
+    Description: {{ experience.description }} <br>
+    <a class="btn btn-secondary btn-sm" href="{% url 'experience-list' %}">Back</a>
+</p>
+
+
+
+{% endblock %}

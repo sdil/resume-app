@@ -4,14 +4,20 @@
 <ul>
     {% for experience in experiences %}
     <li>
-        <b>{{ experience.title }} </b> {{ experience.company }}, {{ experience.start_date | date:"M Y" }} - {{ experience.end_date |date:"M Y" }}
-        <a href="{% url 'experience-update' experience.id %}">Update Experience</a>
-        <a href="{% url 'experience-delete' experience.id %}">Delete experience</a>
+        <div>
+            <div>
+                <a href="{% url 'experience-details' experience.id %}"><b>{{ experience.title }} </b> {{ experience.company }}, {{ experience.start_date | date:"M Y" }} - {{ experience.end_date |date:"M Y" }}</a><br>
+                {{ experience.description }}
+            </div>
+            <div>
+                <a class="btn btn-success btn-sm" href="{% url 'experience-update' experience.id %}">Update Experience</a>
+                <a class="btn btn-danger btn-sm" href="{% url 'experience-delete' experience.id %}">Delete experience</a>
+            </div>
+        </div>
         <br>
-        {{ experience.description }}
     </li>
     {% endfor %}
 </ul>
 
-<a href="{% url 'experience-add' %}">Add new experience</a>
+<a class="btn btn-primary btn-sm" href="{% url 'experience-add' %}">Add new experience</a>
 {% endblock %}

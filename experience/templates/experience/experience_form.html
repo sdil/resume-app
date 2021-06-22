@@ -1,13 +1,31 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<form action="" method="post">
-    {% csrf_token %}
-    <table>
-        {{ form.as_p }}
-    </table>
-    <input type="submit" value="Submit">
-</form>
+<div class="py-4">
+    <h4 class="mb-3">Experience Information</h4>
 
-<a href="{% url 'experience-list' %}">Back</a>
+    <form action="" method="post">
+        {% csrf_token %}
+        {% for field in form.visible_fields %}
+        <div class="row py-2">
+            <label class="form-label">{{ field.label }}</label>
+            {{ field }}
+        </div>
+
+        {% if field.errors %}
+        <div>
+            {% for error in field.errors %}
+            <small class="text-danger">
+                {{ error }}
+            </small>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% endfor %}
+        <input class="btn btn-primary btn-sm" type="submit" value="Submit">
+    </form>
+</div>
+
+<a class="btn btn-secondary btn-sm" href="{% url 'experience-list' %}">Back</a>
 {% endblock %}
