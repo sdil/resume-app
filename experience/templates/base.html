@@ -4,5 +4,13 @@
     </a>
 </h1>
 
+{% if messages %}
+{% for message in messages %}
+{{ message }}
+{% endfor %}
+{% endif %}
+
 {% block content%}
 {% endblock %}
+
+<a href="{% url 'dashboard' %}">Dashboard</a>
