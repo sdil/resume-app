@@ -4,7 +4,10 @@
 <ul>
     {% for experience in experiences %}
     <li>
-        <a href="{% url 'experience-details' experience.id %}"><b>{{ experience.title }} </b> {{ experience.company }}, {{ experience.start_date | date:"M Y" }} - {{ experience.end_date |date:"M Y" }}</a>
+        <a href="{% url 'experience-details' experience.id %}">
+            <b>{{ experience.title }} </b> {{ experience.company }},
+            {{ experience.start_date | date:"M Y" }} - {{ experience.end_date |date:"M Y" }}
+        </a>
         <br>
         {{ experience.description }}
     </li>
